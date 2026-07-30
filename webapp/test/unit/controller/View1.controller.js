@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(Controller, View1Controller) {
     "use strict";
 
-    QUnit.module("View1 Controller", {
+    QUnit.module("webapp/test/unit/controller/View1.controller.js", {
         beforeEach: function() {
             this.oController = new View1Controller();
         },

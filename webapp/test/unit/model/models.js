@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(models) {
     "use strict";
 
-    QUnit.module("Model Utilities");
+    QUnit.module("webapp/test/unit/model/models.js");
 
     // TC-007: Passes
     QUnit.test("createDeviceModel should return a JSONModel", function(assert) {

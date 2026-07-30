@@ -6,7 +6,7 @@ sap.ui.define([
 ], function(opaTest) {
     "use strict";
 
-    QUnit.module("Navigation Journey");
+    QUnit.module("webapp/test/integration/NavigationJourney.js");
 
     // TC-013: OPA5 integration test — intentionally fails due to Chrome 94 + latest UI5 incompatibility
     // This demonstrates failure reporting in the XML

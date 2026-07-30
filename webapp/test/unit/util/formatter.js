@@ -2,7 +2,7 @@
 sap.ui.define([], function() {
     "use strict";
 
-    QUnit.module("Formatter Utilities");
+    QUnit.module("webapp/test/unit/util/formatter.js");
 
     // TC-010: Passes
     QUnit.test("Empty string should be treated as falsy", function(assert) {
