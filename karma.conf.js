@@ -1,43 +1,35 @@
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
-
 module.exports = function(config) {
   "use strict";
-
   const networkInterfaces = os.networkInterfaces();
   const containerIp = Object.values(networkInterfaces)
     .flat()
     .find(i => i.family === 'IPv4' && !i.internal)?.address || 'localhost';
-
   config.set({
     frameworks: ['ui5', 'qunit'],
-
     ui5: {
       url: "https://sapui5.hana.ondemand.com",
       mode: "script",
       config: {
        async: true,
        resourceRoots: {
-         "ns.html5module": "/base/webapp"      // lowercase — matches the app
+         "ns.html5module": "/base/webapp"      
       }
       },
     tests: [
-      "ns/html5module/test/unit/AllTests",       // lowercase
+      "ns/html5module/test/unit/AllTests",       
       "ns/html5module/test/integration/AllJourneys"
     ] 
     },
-
     files: [
       { pattern: 'webapp/**', served: true, included: false, watched: true }
     ],
-
     preprocessors: {
       'webapp/!(test)/**/*.js': ['coverage']
     },
-
-    reporters: ['progress', 'coverage', 'junit', 'sonarqubeUnit'],
-
+    reporters: ['progress', 'coverage', 'sonarqubeUnit'],
     coverageReporter: {
       dir: 'reports',
       reporters: [
@@ -48,20 +40,14 @@ module.exports = function(config) {
         { type: 'text-summary' }
       ]
     },
-
-    junitReporter: {
-      outputDir: 'reports',
-      outputFile: 'TESTS-karma.xml',
-      useBrowserName: false,
-      suite: 'KarmaTests'
-    },
-
     sonarQubeUnitReporter: {
     sonarQubeVersion: "LATEST",
+    // Mandatory: The outputFile name/path must be exactly "reports/Test-execution.xml".
+    // This filename is required for SonarQube/Jenkins to locate and import the test execution report.
+    // Do not rename or change this value unless the pipeline configuration is updated accordingly.
     outputFile: "reports/Test-execution.xml",
     useBrowserName: false
     },
-
     port: 9876,
     hostname: containerIp,
     listenAddress: '0.0.0.0',
@@ -70,7 +56,6 @@ module.exports = function(config) {
     autoWatch: false,
     singleRun: true,             // runs once & exits; correct for CI
     failOnEmptyTestSuite: false,
-
     browsers: ['SeleniumChrome'],
     customLaunchers: {
       SeleniumChrome: {
@@ -85,24 +70,20 @@ module.exports = function(config) {
         pseudoActivityInterval: 30000
       }
     },
-
     captureTimeout: 210000,
     browserDisconnectTimeout: 210000,
     browserDisconnectTolerance: 3,
     browserNoActivityTimeout: 210000,
-
     plugins: [
       'karma-ui5',
       'karma-qunit',
       'karma-mocha',
       'karma-chrome-launcher',
-      'karma-junit-reporter',
       'karma-browserify',
       'karma-coverage',
       'karma-webdriver-launcher',
       'karma-sonarqube-unit-reporter'
     ],
-
     concurrency: 1,
     forceJSONP: false
   });
