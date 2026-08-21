@@ -3,5 +3,5 @@
   "tenant-mode": "dedicated",
   "description": "Security profile of called application",
   "scopes": [],
-  "role-templates": []#123
+  "role-templates": []#1234
 }
